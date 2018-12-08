@@ -1,0 +1,62 @@
+<script src="vue.js"></script>
+<style>
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin: 10px;
+    }
+    .red {
+        background-color: red;
+    }
+    .green {
+        background-color: green;
+    }
+    .blue {
+        background-color: blue;
+    }
+</style>
+
+<html>
+    <div id="app">
+        <div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+        <div class="demo" :style="[myStyle]"></div>
+        <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+        <hr>
+        <input type="text" v-model="color" >
+        <input type="number" v-model="width" >
+    </div>
+    
+
+</html>
+
+
+
+<script> 
+    var app = new Vue({
+        el: '#app',
+        data: {
+            attachRed: false,
+            color: 'green',
+            width: 100
+        },
+        computed: {
+            divClasses: function() {
+                return {
+                    red: this.attachRed,
+                    blue: !this.attachRed
+                }
+            },
+            myStyle: function() {
+                return {
+                    backgroundColor: this.color,
+                    width: this.width+ 'px'
+                }
+            }
+        },
+        methods: {
+
+        }
+    });
+</script>
